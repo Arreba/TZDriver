@@ -1,0 +1,15 @@
+App.xbf
+Controls\AddJobDialog.xbf
+Controls\BeginDialog.xbf
+Controls\ControlStyles.xbf
+Controls\CountdownControl.xbf
+Controls\EndDialog.xbf
+Controls\FakeFareControl.xbf
+Controls\Navigation.xbf
+Controls\PickupControl.xbf
+Controls\TripMapControl.xbf
+Controls\TripSummary.xbf
+Styles\Custom.xbf
+Views\ActiveTripView.xbf
+Views\ClosedTripView.xbf
+Views\TripView.xbf

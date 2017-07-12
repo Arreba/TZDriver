@@ -1,0 +1,658 @@
+﻿<Page x:ConnectionId='1' x:Class="TZDriver.Views.TripView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:converter="using:Template10.Converters"
+      xmlns:ctrl="using:TZDriver.Controls"
+      xmlns:exctrl="using:TZDriver.Models.Controls"
+      xmlns:helper="using:TZDriver.Models.Tools.Helpers"
+      xmlns:trigger="using:TZDriver.Utilities"
+      xmlns:mapctrl="using:Windows.UI.Xaml.Controls.Maps"
+      Background="{StaticResource AtransPageBackgroundBrush}"
+      DataContext="{Binding TripPage, Source={StaticResource Locator}}"
+      mc:Ignorable="d">
+
+    <Page.Resources>
+        <converter:ValueWhenConverter x:Key="visibleWhenTrueConverter">
+            <converter:ValueWhenConverter.When>
+                <x:Boolean>True</x:Boolean>
+            </converter:ValueWhenConverter.When>
+            <converter:ValueWhenConverter.Value>
+                <Visibility>Visible</Visibility>
+            </converter:ValueWhenConverter.Value>
+            <converter:ValueWhenConverter.Otherwise>
+                <Visibility>Collapsed</Visibility>
+            </converter:ValueWhenConverter.Otherwise>
+        </converter:ValueWhenConverter>
+    </Page.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid x:ConnectionId='2' x:Name="disPatchGrid"
+              Grid.Row="0"
+              MinHeight="100">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid x:ConnectionId='23' x:Name="routeIconGrid"
+                  Grid.Column="0"
+                  Width="100"
+                  Background="{StaticResource AtransRedDarkBrush}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Viewbox x:ConnectionId='25' x:Name="routeIconBox"
+                         Grid.Row="0" />
+                <TextBlock x:ConnectionId='26' x:Name="routeDistanceRemaining"
+                           Grid.Row="1" />
+            </Grid>
+            <Grid x:ConnectionId='24' x:Name="routeTextGrid"
+                  Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.Background>
+                    <SolidColorBrush Color="{StaticResource AtransBrownDarkColor2}" />
+                </Grid.Background>
+
+
+            </Grid>
+        </Grid>
+        <mapctrl:MapControl x:ConnectionId='3' x:Name="drivewMap"
+                            Grid.Row="1"
+                            Grid.RowSpan="4"
+                            Margin="0,0,0,-150"
+                            IsDoubleTapEnabled="False"
+                            IsHoldingEnabled="False"
+                            IsRightTapEnabled="False"
+                            IsTapEnabled="False"
+                            LandmarksVisible="True"
+                            PanInteractionMode="Disabled"
+                            ZoomInteractionMode="ControlOnly"
+                            RenderTransformOrigin="0.5,0.5"
+                                                                                          
+                                                                                          
+                                                                                         
+                                                                                             >
+            <mapctrl:MapControl.RenderTransform>
+                <CompositeTransform TranslateY="1" />
+            </mapctrl:MapControl.RenderTransform>
+            <ctrl:Navigation x:ConnectionId='22' x:Name="NavigationPin"
+                             mapctrl:MapControl.NormalizedAnchorPoint="0.5 0.8"
+                                                                                                      
+                                                                                                                
+                                                                                                                                                  />
+        </mapctrl:MapControl>
+        <exctrl:TripViewControl x:ConnectionId='4' x:Name="TripValuesView"
+                                Grid.Row="1"
+                                MinHeight="80"
+                                MaxHeight="110"
+                                HorizontalAlignment="Stretch"
+                                x:Load="False"
+                                AllowTapToFlip="True"
+                                AnimationDuration="200"
+                                EnablePerspect="True"
+                                FlipDirection="BackToFront"
+                                RotationAxis="X"
+                                TripDuration="{Binding CurrentTripDataRepo.TripMinutes}">
+            <exctrl:TripViewControl.Views>
+                <Grid x:ConnectionId='13' x:Name="fareGrid"
+                      MaxHeight="90"
+                      CornerRadius="10"
+                      Margin="5 15 5 0">
+                    <Grid.Background>
+                        <SolidColorBrush Opacity="1"
+                                         Color="{StaticResource AtransGreenDarkColor}" />
+                    </Grid.Background>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1.5*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <StackPanel>
+                        <TextBlock Margin="10,0"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   FontFamily="{StaticResource Ailerons}"
+                                   FontSize="24"
+                                   Foreground="{StaticResource AtransBrownDarkBrush2}"
+                                   Text="CURRENT FARE"
+                                   TextAlignment="Right" />
+                        <Grid Grid.Column="1"
+                              Margin="5 0 0 6"
+                              CornerRadius="8"
+                              MinHeight="57"
+                              Background="{StaticResource AtransBrownLightBrush1}">
+                            <TextBlock x:ConnectionId='21' x:Name="tripFare"
+                                       Margin="0,-2,0,-2"
+                                       FontWeight="Bold"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       FontFamily="{StaticResource MaterialDesignFont}"
+                                       FontSize="50"
+                                       Foreground="{StaticResource AtransRedDarkBrush}"
+                                       Text="{Binding CurrentTripDataRepo.TripFare, Converter={StaticResource ResourceKey=stringFormaterConverter}, ConverterParameter='&#x20a6; \{0:##,#\}'}" />
+                        </Grid>
+                    </StackPanel>
+                    <Grid MinHeight="35"
+                          Grid.Column="1"
+                          Margin="10 0 5 0"
+                          VerticalAlignment="Center">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0"
+                              Margin="0,-5,0,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="0"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       FontSize="12"
+                                       Foreground="{StaticResource AtransBrownDarkBrush2}"
+                                       FontFamily="{StaticResource Ailerons}"
+                                       Text="CLIENT" />
+                            <TextBlock Grid.Row="1"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       FontSize="24"
+                                       Foreground="{StaticResource AtransBrownLightBrush1}"
+                                       FontFamily="{StaticResource NotJustGroovy}"
+                                       Text="{Binding CurrentTripDataRepo.CurrentUser, Converter={StaticResource fullNameToFirstConverter}, FallbackValue='CHRISTIANSR'}" />
+
+                        </Grid>
+                        <Grid Grid.Row="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="0"
+                                       VerticalAlignment="Center"
+                                       FontSize="12"
+                                       Foreground="{StaticResource AtransBrownDarkBrush2}"
+                                       FontFamily="{StaticResource Ailerons}"
+                                       Text="TRIP START TIME"
+                                       HorizontalAlignment="Center" />
+                            <StackPanel Grid.Row="1"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Orientation="Horizontal"
+                                        Margin="0,0,0,-5">
+                                <TextBlock VerticalAlignment="Center"
+                                           FontFamily="{StaticResource Ailerons}"
+                                           FontSize="28"
+                                           Foreground="{StaticResource AtransBrownLightBrush1}"
+                                           Text="{Binding CurrentTripDataRepo.StartTime, Converter={StaticResource timeInListConverter}, FallbackValue='12:45'}" />
+                                <TextBlock VerticalAlignment="Bottom"
+                                           FontSize="12"
+                                           FontFamily="{StaticResource MaterialDesignFont}"
+                                           Foreground="{StaticResource AtransRedDarkBrush}"
+                                           Text="{Binding CurrentTripDataRepo.StartTime, Converter={StaticResource timeInListToAMPMConverter}, FallbackValue='PM'}"
+                                           Margin="0,0,0,2" />
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                </Grid>
+                <Grid x:ConnectionId='14' x:Name="timeGrid"
+                      MaxHeight="90"
+                      CornerRadius="10"
+                      Margin="5 15 5 0">
+                    <Grid.Background>
+                        <SolidColorBrush Opacity="1"
+                                         Color="{StaticResource AtransBlueDarkColor}" />
+                    </Grid.Background>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1.5*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0"
+                          MinHeight="76"
+                          Margin="6 6 5 6"
+                          VerticalAlignment="Center">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="1"
+                              MinHeight="65"
+                              VerticalAlignment="Bottom"
+                              CornerRadius="8">
+                            <Grid.Background>
+                                <SolidColorBrush Opacity="1"
+                                                 Color="{StaticResource AtransBrownLightColor1}" />
+                            </Grid.Background>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width=".15*" />
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width=".12*" />
+                                <ColumnDefinition Width=".8*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock x:ConnectionId='16' x:Name="driveHour"
+                                       Grid.Column="0"
+                                       Margin="5,-5,0,-5"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       FontFamily="{StaticResource DigiFace}"
+                                       FontSize="70"
+                                       FontWeight="Light"
+                                       Foreground="{StaticResource AtransBrownDarkBrush1}"
+                                       Text="{Binding CurrentTripDataRepo.TripHours, Converter={StaticResource ResourceKey=stringFormaterConverter}, ConverterParameter='\{0:00\}', FallbackValue='00'}"
+                                       TextAlignment="Center" />
+                            <TextBlock x:ConnectionId='17' x:Name="bigFareTextBlock"
+                                       Grid.Column="1"
+                                       Margin="0,-10,0,0"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       FontFamily="{StaticResource DigiFace}"
+                                       FontSize="50"
+                                       FontWeight="Bold"
+                                       Foreground="{StaticResource AtransYellowDarkBrush}"
+                                       Text=":">
+                                <TextBlock.Triggers>
+                                    <EventTrigger>
+                                        <BeginStoryboard>
+                                            <Storyboard RepeatBehavior="Forever">
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="bigFareTextBlock"
+                                                                               Storyboard.TargetProperty="(UIElement.Visibility)">
+                                                    <DiscreteObjectKeyFrame KeyTime="0:0:1">
+                                                        <DiscreteObjectKeyFrame.Value>
+                                                            <Visibility>Collapsed</Visibility>
+                                                        </DiscreteObjectKeyFrame.Value>
+                                                    </DiscreteObjectKeyFrame>
+                                                    <DiscreteObjectKeyFrame KeyTime="0:0:2">
+                                                        <DiscreteObjectKeyFrame.Value>
+                                                            <Visibility>Visible</Visibility>
+                                                        </DiscreteObjectKeyFrame.Value>
+                                                    </DiscreteObjectKeyFrame>
+                                                </ObjectAnimationUsingKeyFrames>
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="smallFareTextBlock"
+                                                                               Storyboard.TargetProperty="(UIElement.Visibility)">
+                                                    <DiscreteObjectKeyFrame KeyTime="0:0:1">
+                                                        <DiscreteObjectKeyFrame.Value>
+                                                            <Visibility>Collapsed</Visibility>
+                                                        </DiscreteObjectKeyFrame.Value>
+                                                    </DiscreteObjectKeyFrame>
+                                                    <DiscreteObjectKeyFrame KeyTime="0:0:2">
+                                                        <DiscreteObjectKeyFrame.Value>
+                                                            <Visibility>Visible</Visibility>
+                                                        </DiscreteObjectKeyFrame.Value>
+                                                    </DiscreteObjectKeyFrame>
+                                                </ObjectAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger>
+                                </TextBlock.Triggers>
+                            </TextBlock>
+                            <TextBlock x:ConnectionId='18' x:Name="driveMunite"
+                                       Grid.Column="2"
+                                       Margin="0,-5"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       FontFamily="{StaticResource DigiFace}"
+                                       FontSize="70"
+                                       FontWeight="Light"
+                                       Foreground="{StaticResource AtransBrownDarkBrush1}"
+                                       Text="{Binding CurrentTripDataRepo.TripMinutes, Converter={StaticResource ResourceKey=stringFormaterConverter}, ConverterParameter='\{0:00\}', FallbackValue='00'}"
+                                       TextAlignment="Center" />
+                            <TextBlock x:ConnectionId='19' x:Name="smallFareTextBlock"
+                                       Grid.Column="3"
+                                       Margin="0,-10,0,0"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       FontFamily="{StaticResource DigiFace}"
+                                       FontSize="50"
+                                       FontWeight="Bold"
+                                       Foreground="{StaticResource AtransYellowDarkBrush}"
+                                       Text=":" />
+                            <StackPanel Grid.Column="4"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Orientation="Vertical">
+                                <TextBlock Margin="0,0,0,-10"
+                                           FontFamily="{StaticResource DigiFace}"
+                                           FontSize="24"
+                                           Foreground="{StaticResource AtransRedDarkBrush}"
+                                           Text="Sec"
+                                           TextAlignment="Center" />
+                                <TextBlock x:ConnectionId='20' x:Name="driveSecond"
+                                           FontFamily="{StaticResource DigiFace}"
+                                           FontSize="50"
+                                           FontWeight="Light"
+                                           Foreground="{StaticResource AtransBrownDarkBrush1}"
+                                           Text="{Binding CurrentTripDataRepo.TripSeconds, Converter={StaticResource ResourceKey=stringFormaterConverter}, ConverterParameter='\{0:00\}', FallbackValue='00'}"
+                                           TextAlignment="Center"
+                                           Margin="0,-5,0,-5" />
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+
+                    <Grid Grid.Column="1"
+                          MinHeight="76"
+                          Margin="5 6 6 6"
+                          VerticalAlignment="Center">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <StackPanel Grid.Row="0"
+                                    Margin="0,0,0,5"
+                                    HorizontalAlignment="Center"
+                                    Orientation="Horizontal">
+                            <FontIcon Margin="0,0,5,0"
+                                      FontFamily="Segoe UI Symbol"
+                                      FontSize="14"
+                                      Foreground="{StaticResource AtransYellowDarkBrush}"
+                                      Glyph="&#x26dc;" />
+                            <TextBlock HorizontalAlignment="Center"
+                                       FontFamily="{StaticResource Ailerons}"
+                                       FontSize="16"
+                                       Foreground="{StaticResource AtransYellowDarkBrush}"
+                                       Text="Distance" />
+                        </StackPanel>
+                        <Grid Grid.Row="1"
+                              CornerRadius="6">
+                            <Grid.Background>
+                                <SolidColorBrush Opacity="1"
+                                                 Color="{StaticResource AtransBrownLightColor1}" />
+                            </Grid.Background>
+                            <StackPanel HorizontalAlignment="Center"
+                                        Orientation="Horizontal">
+                                <TextBlock x:ConnectionId='15' x:Name="driveDistance"
+                                           MinWidth="60"
+                                           Margin="0,0,5,0"
+                                           VerticalAlignment="Center"
+                                           FontFamily="{StaticResource NotJustGroovy}"
+                                           FontSize="36"
+                                           Foreground="{StaticResource AtransBrownDarkBrush1}"
+                                           Text="{Binding CurrentTripDataRepo.CurrentDistance, Converter={StaticResource ResourceKey=stringFormaterConverter}, ConverterParameter='\{0:F1\}'}"
+                                           TextAlignment="Right" />
+                                <TextBlock Margin="0,0,0,8"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Bottom"
+                                           FontFamily="{StaticResource NotJustGroovy}"
+                                           FontSize="20"
+                                           Foreground="{StaticResource AtransRedDarkBrush}"
+                                           Text="KM" />
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </exctrl:TripViewControl.Views>
+        </exctrl:TripViewControl>
+        <ctrl:PickupControl x:ConnectionId='5' x:Name="pickupControl"
+                            Grid.Row="1"
+                            MinHeight="100"
+                            MaxHeight="120"
+                            Margin="10,10,0,0"
+                            VerticalAlignment="Top"
+                            Radius="50"
+                            x:Load="False"
+                            RemainMinutes="{Binding CurrentTripDataRepo.CurrentPickupMunites}"
+                            SegmentColor="{StaticResource ProgressBarGradientThemeBrush}"
+                            StrokeThickness="5" />
+        <Grid x:ConnectionId='6' x:Name="navigationGrid"
+              Grid.Row="3"
+              MinHeight="70"
+              Background="{StaticResource AtransBrownDarkBrush2}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Button x:ConnectionId='7' x:Name="startButton"
+                    Grid.Column="0"
+                    Margin="0,10"
+                    Command="{Binding StartCommand}"
+                    Style="{StaticResource MeterButtonStyle}">
+                <Button.Content>
+                    <StackPanel Orientation="Vertical">
+                        <FontIcon HorizontalAlignment="Center"
+                                  VerticalAlignment="Center"
+                                  FontFamily="Segoe MDL2 Assets"
+                                  FontSize="24"
+                                  Foreground="{StaticResource AtransBrownLightBrush1}"
+                                  Glyph="&#xE78B;" />
+                        <TextBlock Margin="0,5,0,0"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   FontFamily="{StaticResource Ailerons}"
+                                   FontSize="16"
+                                   Foreground="{StaticResource AtransBrownLightBrush1}"
+                                   Text="START" />
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+            <Button x:ConnectionId='8' x:Name="reachButton"
+                    Grid.Column="1"
+                    Margin="0,10"
+                    Command="{Binding ReachCommand}"
+                    Style="{StaticResource MeterButtonStyle}">
+                <Button.Content>
+                    <StackPanel Orientation="Vertical">
+                        <FontIcon HorizontalAlignment="Center"
+                                  VerticalAlignment="Center"
+                                  FontFamily="Segoe MDL2 Assets"
+                                  FontSize="22"
+                                  Foreground="{StaticResource AtransBrownLightBrush1}"
+                                  Glyph="&#xE95B;" />
+                        <TextBlock Margin="0,5,0,0"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   FontFamily="{StaticResource Ailerons}"
+                                   FontSize="16"
+                                   Foreground="{StaticResource AtransBrownLightBrush1}"
+                                   Text="REACH" />
+                    </StackPanel>
+                </Button.Content>
+                <FlyoutBase.AttachedFlyout>
+                    <Flyout helper:FlyoutHelper.IsOpen="{Binding IsReachflyoutOpen, Mode=TwoWay}"
+                            helper:FlyoutHelper.Parent="{Binding ElementName=reachButton}"
+                            FlyoutPresenterStyle="{StaticResource FlyoutStyle}"
+                            Placement="Bottom">
+                        <Grid>
+                            <Grid.Style>
+                                <Style TargetType="Grid">
+                                    <Setter Property="Transitions">
+                                        <Setter.Value>
+                                            <TransitionCollection>
+                                                <AddDeleteThemeTransition />
+                                                <ContentThemeTransition />
+                                                <ReorderThemeTransition />
+                                                <EntranceThemeTransition FromVerticalOffset="300"
+                                                                         IsStaggeringEnabled="False" />
+                                            </TransitionCollection>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </Grid.Style>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Button x:ConnectionId='10' x:Name="callMTN"
+                                    Grid.Column="0"
+                                    VerticalAlignment="Bottom"
+                                    Background="{StaticResource AtransPurpleLightBrush}"
+                                    Command="{Binding ReachOfficeMTNCommand}"
+                                    Style="{StaticResource CircularCallButtonStyle}">
+                                <Button.Content>
+                                    <StackPanel Orientation="Vertical"
+                                                HorizontalAlignment="Center">
+                                        <FontIcon HorizontalAlignment="Center"
+                                                  VerticalAlignment="Center"
+                                                  FontFamily="Segoe MDL2 Assets"
+                                                  FontSize="22"
+                                                  Foreground="{StaticResource AtransBrownDarkBrush3}"
+                                                  Glyph="&#xE83C;" />
+                                        <TextBlock HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   FontFamily="{StaticResource Ailerons}"
+                                                   FontSize="14"
+                                                   Foreground="{StaticResource AtransBrownDarkBrush3}"
+                                                   Text="MTN" />
+                                    </StackPanel>
+                                </Button.Content>
+                            </Button>
+                            <Button x:ConnectionId='11' x:Name="callClient"
+                                    Grid.Column="1"
+                                    Margin="15,0,15,50"
+                                    Command="{Binding ReachPickupClientCommand}"
+                                    Style="{StaticResource CircularCallButtonStyle}">
+                                <Button.Content>
+                                    <StackPanel Orientation="Vertical"
+                                                HorizontalAlignment="Center">
+                                        <FontIcon HorizontalAlignment="Center"
+                                                  VerticalAlignment="Center"
+                                                  FontFamily="Segoe MDL2 Assets"
+                                                  FontSize="22"
+                                                  Foreground="{StaticResource AtransBrownDarkBrush2}"
+                                                  Glyph="&#xE156;" />
+                                        <TextBlock HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   FontFamily="{StaticResource Ailerons}"
+                                                   FontSize="14"
+                                                   Foreground="{StaticResource AtransBrownDarkBrush2}"
+                                                   Text="CLIENT" />
+                                    </StackPanel>
+                                </Button.Content>
+                            </Button>
+                            <Button x:ConnectionId='12' x:Name="callEtisalat"
+                                    Grid.Column="2"
+                                    VerticalAlignment="Bottom"
+                                    Background="{StaticResource AtransPurpleLightBrush}"
+                                    Command="{Binding ReachOfficeEtisaCommand}"
+                                    Style="{StaticResource CircularCallButtonStyle}">
+                                <Button.Content>
+                                    <StackPanel Orientation="Vertical"
+                                                HorizontalAlignment="Center">
+                                        <FontIcon HorizontalAlignment="Center"
+                                                  VerticalAlignment="Center"
+                                                  FontFamily="Segoe MDL2 Assets"
+                                                  FontSize="22"
+                                                  Foreground="{StaticResource AtransBrownDarkBrush3}"
+                                                  Glyph="&#xE83C;" />
+                                        <TextBlock HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   FontFamily="{StaticResource Ailerons}"
+                                                   FontSize="14"
+                                                   Foreground="{StaticResource AtransBrownDarkBrush3}"
+                                                   Text="ETISA" />
+                                    </StackPanel>
+                                </Button.Content>
+                            </Button>
+                        </Grid>
+                    </Flyout>
+                </FlyoutBase.AttachedFlyout>
+            </Button>
+            <Button x:ConnectionId='9' x:Name="stopButton"
+                    Grid.Column="2"
+                    Margin="0,10"
+                    Command="{Binding StopCommand}"
+                    Style="{StaticResource MeterButtonStyle}">
+                <Button.Content>
+                    <StackPanel Orientation="Vertical">
+                        <FontIcon HorizontalAlignment="Center"
+                                  VerticalAlignment="Center"
+                                  FontFamily="Segoe MDL2 Assets"
+                                  FontSize="22"
+                                  Foreground="{StaticResource AtransBrownLightBrush1}"
+                                  Glyph="&#xE711;" />
+                        <TextBlock Margin="0,5,0,0"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   FontFamily="{StaticResource Ailerons}"
+                                   FontSize="16"
+                                   Foreground="{StaticResource AtransBrownLightBrush1}"
+                                   Text="STOP" />
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+        </Grid>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:ConnectionId='27' x:Name="DriveVisualStateGroup">
+                <VisualState x:ConnectionId='28' x:Name="PickupState">
+                    <VisualState.StateTriggers>
+                        <trigger:DriveStateTrigger DriveState="{Binding CurrentTripDataRepo.DriveValue, Mode=TwoWay}"
+                                                   DriveStatus="PickupState" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="TripValuesView.Visibility"
+                                Value="Collapsed" />
+                    </VisualState.Setters>
+                    <VisualState.Storyboard>
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="pickupControl"
+                                                           Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                        Value="Visible" />
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState.Storyboard>
+                </VisualState>
+                <VisualState x:ConnectionId='29' x:Name="TripStarted">
+                    <VisualState.StateTriggers>
+                        <trigger:DriveStateTrigger DriveState="{Binding CurrentTripDataRepo.DriveValue, Mode=TwoWay}"
+                                                   DriveStatus="TripStarted" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="pickupControl.Visibility"
+                                Value="Collapsed" />
+                    </VisualState.Setters>
+                    <VisualState.Storyboard>
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="TripValuesView"
+                                                           Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                        Value="Visible" />
+                            </ObjectAnimationUsingKeyFrames>
+                            <!--<ObjectAnimationUsingKeyFrames Storyboard.TargetName="pickupControl"
+                                                           Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                        Value="Collapsed" />
+                            </ObjectAnimationUsingKeyFrames>-->
+                        </Storyboard>
+                    </VisualState.Storyboard>
+                </VisualState>
+                <VisualState x:ConnectionId='30' x:Name="TripCompleted">
+                    <VisualState.StateTriggers>
+                        <trigger:DriveStateTrigger DriveState="{Binding CurrentTripDataRepo.DriveValue, Mode=TwoWay}"
+                                                   DriveStatus="TripCompleted" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="TripValuesView.Visibility"
+                                Value="Collapsed" />
+                        <Setter Target="pickupControl.Visibility"
+                                Value="Collapsed" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:ConnectionId='31' x:Name="FreeState">
+                    <VisualState.StateTriggers>
+                        <trigger:DriveStateTrigger DriveState="{Binding CurrentTripDataRepo.DriveValue, Mode=TwoWay}"
+                                                   DriveStatus="FreeState" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="TripValuesView.Visibility"
+                                Value="Collapsed" />
+                        <Setter Target="pickupControl.Visibility"
+                                Value="Collapsed" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+    </Grid>
+
+</Page>
+

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PriInfo>
+	<ResourceMap name="XamlBrewer.Uwp.Rating" version="1.0" primary="true">
+		<Qualifiers/>
+		<ResourceMapSubtree name="Files">
+			<ResourceMapSubtree name="XamlBrewer.Uwp.Rating">
+				<NamedResource name="XamlBrewer.Uwp.Rating.xr.xml" uri="ms-resource://XamlBrewer.Uwp.Rating/Files/XamlBrewer.Uwp.Rating/XamlBrewer.Uwp.Rating.xr.xml">
+					<Candidate type="Path">
+						<Value>XamlBrewer.Uwp.Rating\XamlBrewer.Uwp.Rating.xr.xml</Value>
+					</Candidate>
+				</NamedResource>
+				<ResourceMapSubtree name="Assets">
+					<NamedResource name="defaultStar_empty.png" uri="ms-resource://XamlBrewer.Uwp.Rating/Files/XamlBrewer.Uwp.Rating/Assets/defaultStar_empty.png">
+						<Candidate type="Path">
+							<Value>XamlBrewer.Uwp.Rating\Assets\defaultStar_empty.png</Value>
+						</Candidate>
+					</NamedResource>
+					<NamedResource name="defaultStar_full.png" uri="ms-resource://XamlBrewer.Uwp.Rating/Files/XamlBrewer.Uwp.Rating/Assets/defaultStar_full.png">
+						<Candidate type="Path">
+							<Value>XamlBrewer.Uwp.Rating\Assets\defaultStar_full.png</Value>
+						</Candidate>
+					</NamedResource>
+				</ResourceMapSubtree>
+				<ResourceMapSubtree name="Themes">
+					<NamedResource name="Generic.xbf" uri="ms-resource://XamlBrewer.Uwp.Rating/Files/XamlBrewer.Uwp.Rating/Themes/Generic.xbf">
+						<Candidate type="EmbeddedData">
+							<Base64Value>[Embedded Binary Data]</Base64Value>
+						</Candidate>
+					</NamedResource>
+				</ResourceMapSubtree>
+			</ResourceMapSubtree>
+		</ResourceMapSubtree>
+	</ResourceMap>
+</PriInfo>

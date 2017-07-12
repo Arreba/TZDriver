@@ -1,0 +1,4 @@
+C:\Users\Chris\Desktop\TZDriver\TZDriver.Models\TZDriver.Models.csproj;x86
+C:\Users\Chris\Desktop\TZDriver\TZDriver.Models\TZDriver.Models.csproj;x86
+C:\Users\Chris\Desktop\TZDriver\TZDriver.Monitor\TZDriver.Monitor.csproj;x86
+C:\Users\Chris\Desktop\TZDriver\TZDriver\TZDriver.csproj;x86

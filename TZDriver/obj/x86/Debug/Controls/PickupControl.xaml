@@ -1,0 +1,264 @@
+﻿<UserControl x:ConnectionId='1' x:Class="TZDriver.Controls.PickupControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="using:TZDriver.Controls"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:rating="using:XamlBrewer.Uwp.Controls"
+             mc:Ignorable="d"
+             d:DesignHeight="300"
+             d:DesignWidth="400">
+
+    <UserControl.Resources>
+        <Storyboard x:ConnectionId='2' x:Name="PickupFlashingStoryboard"
+                    RepeatBehavior="Forever">
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="FlashBackground"
+                                           Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="0:0:1">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:2">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+            </ObjectAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:ConnectionId='3' x:Name="ClientDetailFadeInStoryboard">
+            <DoubleAnimation AutoReverse="False"
+                             Storyboard.TargetName="ClientDetail"
+                             Storyboard.TargetProperty="Opacity"
+                             From="0"
+                             To="1" />
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ClientDetail"
+                                           Storyboard.TargetProperty="Visibility">
+                <DiscreteObjectKeyFrame KeyTime="0"
+                                        Value="Visible" />
+            </ObjectAnimationUsingKeyFrames>
+            <DoubleAnimation AutoReverse="False"
+                             Storyboard.TargetName="ClientBox"
+                             Storyboard.TargetProperty="Opacity"
+                             From="0"
+                             To="1" />
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ClientBox"
+                                           Storyboard.TargetProperty="Visibility">
+                <DiscreteObjectKeyFrame KeyTime="0"
+                                        Value="Visible" />
+            </ObjectAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:ConnectionId='4' x:Name="ClientDetailFadeOutStoryboard">
+            <DoubleAnimation AutoReverse="False"
+                             Storyboard.TargetName="ClientDetail"
+                             Storyboard.TargetProperty="Opacity"
+                             From="1"
+                             To="0"
+                             Duration="0:0:5" />
+            <ObjectAnimationUsingKeyFrames BeginTime="0:0:5"
+                                           Storyboard.TargetName="ClientDetail"
+                                           Storyboard.TargetProperty="Visibility">
+                <DiscreteObjectKeyFrame KeyTime="0"
+                                        Value="Collapsed" />
+            </ObjectAnimationUsingKeyFrames>
+            <DoubleAnimation AutoReverse="False"
+                             Storyboard.TargetName="ClientBox"
+                             Storyboard.TargetProperty="Opacity"
+                             From="1"
+                             To="0"
+                             Duration="0:0:5" />
+            <ObjectAnimationUsingKeyFrames BeginTime="0:0:5"
+                                           Storyboard.TargetName="ClientBox"
+                                           Storyboard.TargetProperty="Visibility">
+                <DiscreteObjectKeyFrame KeyTime="0"
+                                        Value="Collapsed" />
+            </ObjectAnimationUsingKeyFrames>
+        </Storyboard>
+    </UserControl.Resources>
+
+    <Grid x:ConnectionId='5'                       >
+        <Path x:ConnectionId='6' x:Name="fullPath"
+              Margin="5,5,0,0"
+              HorizontalAlignment="Left"
+              VerticalAlignment="Center"
+              Stroke="{StaticResource CircularBarBackgroundThemeBrush}"
+                                                        >
+            <Path.Data>
+                <PathGeometry>
+                    <PathGeometry.Figures>
+                        <PathFigureCollection>
+                            <PathFigure x:ConnectionId='20' x:Name="fullFigure">
+                                <PathFigure.Segments>
+                                    <PathSegmentCollection>
+                                        <ArcSegment x:ConnectionId='21' x:Name="fullSegment"
+                                                    SweepDirection="Clockwise" />
+                                    </PathSegmentCollection>
+                                </PathFigure.Segments>
+                            </PathFigure>
+                        </PathFigureCollection>
+                    </PathGeometry.Figures>
+                </PathGeometry>
+            </Path.Data>
+        </Path>
+        <Path x:ConnectionId='7' x:Name="pathRoot"
+              Margin="0,0,5,5"
+              HorizontalAlignment="Left"
+              VerticalAlignment="Center"
+              RenderTransformOrigin="0.5,0.5"
+                                                         
+              StrokeEndLineCap="Round"
+              StrokeStartLineCap="Round"
+                                                        >
+            <Path.RenderTransform>
+                <CompositeTransform ScaleX="-1"
+                                    ScaleY="-1" />
+            </Path.RenderTransform>
+            <Path.Data>
+                <PathGeometry>
+                    <PathGeometry.Figures>
+                        <PathFigureCollection>
+                            <PathFigure x:ConnectionId='18' x:Name="pathFigure">
+                                <PathFigure.Segments>
+                                    <PathSegmentCollection>
+                                        <ArcSegment x:ConnectionId='19' x:Name="arcSegment"
+                                                    SweepDirection="Clockwise" />
+                                    </PathSegmentCollection>
+                                </PathFigure.Segments>
+                            </PathFigure>
+                        </PathFigureCollection>
+                    </PathGeometry.Figures>
+                </PathGeometry>
+            </Path.Data>
+        </Path>
+        <Path x:ConnectionId='8' x:Name="ClientBox"
+              VerticalAlignment="Center"
+              x:DeferLoadStrategy="Lazy">
+            <Path.Fill>
+                <SolidColorBrush Opacity="0.6"
+                                 Color="{StaticResource AtransPurpleLightColor}" />
+            </Path.Fill>
+            <Path.RenderTransform>
+                <TranslateTransform x:ConnectionId='17' x:Name="ClientBoxTranslate" />
+            </Path.RenderTransform>
+            <Path.Data>
+                <GeometryGroup>
+                    <PathGeometry>
+                        <PathGeometry.Figures>
+                            <PathFigureCollection>
+                                <PathFigure StartPoint="100 0">
+                                    <PathFigure.Segments>
+                                        <PathSegmentCollection>
+                                            <ArcSegment IsLargeArc="False"
+                                                        Point="100 80"
+                                                        RotationAngle="0"
+                                                        Size="40 50"
+                                                        SweepDirection="clockwise" />
+                                            <LineSegment Point="300 80" />
+                                            <ArcSegment IsLargeArc="False"
+                                                        Point="320 60"
+                                                        RotationAngle="0"
+                                                        Size="20 20"
+                                                        SweepDirection="Counterclockwise" />
+                                            <LineSegment Point="320 20" />
+                                            <ArcSegment IsLargeArc="False"
+                                                        Point="300 0"
+                                                        RotationAngle="0"
+                                                        Size="20 20"
+                                                        SweepDirection="Counterclockwise" />
+                                            <LineSegment Point="100 0" />
+                                        </PathSegmentCollection>
+                                    </PathFigure.Segments>
+                                </PathFigure>
+                            </PathFigureCollection>
+                        </PathGeometry.Figures>
+                    </PathGeometry>
+                </GeometryGroup>
+            </Path.Data>
+        </Path>
+        <Grid x:ConnectionId='9' x:Name="FlashBackground"
+              Margin="12,0,0,0"
+              HorizontalAlignment="Left"
+              VerticalAlignment="Center">
+            <Grid.Background>
+                <SolidColorBrush Opacity="0.7"
+                                 Color="{StaticResource AtransPurpleLightColor}" />
+            </Grid.Background>
+        </Grid>
+        <Grid x:ConnectionId='10' x:Name="counterGrid"
+              Margin="12,0,0,0"
+              HorizontalAlignment="Left"
+              VerticalAlignment="Center"
+                                         >
+            <Grid.Background>
+                <SolidColorBrush Opacity="0.5"
+                                 Color="{StaticResource AtransPurpleLightColor}" />
+            </Grid.Background>
+            <TextBlock x:ConnectionId='16' x:Name="pickupCounter"
+                       Margin="0,4,0,0"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       FontFamily="{StaticResource NotJustGroovy}"
+                       Foreground="{StaticResource AtransBlueDarkBrush}"
+                       Text="{Binding CurrentTripDataRepo.CurrentPickupMunites}" />
+            <TextBlock Margin="0,0,0,5"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Bottom"
+                       FontFamily="{StaticResource NotJustGroovy}"
+                       FontSize="12"
+                       Foreground="{StaticResource AtransBlueDarkBrush}"
+                       Text="mins" />
+            <TextBlock Margin="0,5,0,0"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Top"
+                       FontFamily="{StaticResource NotJustGroovy}"
+                       FontSize="12"
+                       Foreground="{StaticResource AtransBlueDarkBrush}"
+                       Text="pick up" />
+        </Grid>
+        <Grid x:ConnectionId='11' x:Name="ClientDetail"
+              Margin="110,0,0,0"
+              HorizontalAlignment="Left"
+              VerticalAlignment="Center"
+              x:DeferLoadStrategy="Lazy">
+            <Grid.RenderTransform>
+                <TranslateTransform x:ConnectionId='12' x:Name="ClientDetailTranslate" />
+            </Grid.RenderTransform>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <TextBlock x:ConnectionId='13' x:Name="ClientName"
+                       Margin="15,0,0,0"
+                       HorizontalAlignment="Left"
+                       FontFamily="{StaticResource NotJustGroovy}"
+                       FontSize="24"
+                       Foreground="{StaticResource AtransBlueDarkBrush}"
+                       Text="{Binding CurrentTripDataRepo.CurrentUser}" />
+            <StackPanel Grid.Row="1"
+                        Margin="15,0,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Orientation="Horizontal">
+                <rating:Rating x:ConnectionId='14' x:Name="ClientRating"
+                               Maximum="5"
+                               EmptyImage="ms-appx:///Assets/Icons/Purple-Empty.png"
+                               FilledImage="ms-appx:///Assets/Icons/Purple-Filled.png"
+                               VerticalAlignment="Center"
+                               IsInteractive="False"
+                               ItemHeight="18"
+                               ItemPadding="2"
+                               StepFrequency=".25"
+                               Value="{Binding SelectedPickupData.Rating}" />
+                <TextBlock x:ConnectionId='15' x:Name="ClientRatedUsage"
+                           Margin="10,0,0,0"
+                           VerticalAlignment="Center"
+                           FontFamily="{StaticResource NotJustGroovy}"
+                           FontSize="18"
+                           Foreground="{StaticResource AtransBlueDarkBrush}"
+                           Text="{Binding CurrentTripDataRepo.CurrentUserRating, Converter={StaticResource ResourceKey=stringFormaterConverter}, ConverterParameter='\{0:F1\}'}" />
+            </StackPanel>
+        </Grid>
+    </Grid>
+
+</UserControl>
+

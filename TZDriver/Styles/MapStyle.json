@@ -1,0 +1,38 @@
+﻿{
+  "version": "1.0",
+  "settings": {
+    "fogColor": "#98C6DC",
+    "landColor": "#F2EBC7",
+    "spaceColor": "#000000",
+    "atmosphereVisible": true
+  },
+  "elements": {
+    "mapElement": {
+      "labelColor": "#B79CED",
+      "labelOutlineColor": "#FF2D1E5E",
+      "labelVisible": true
+    },
+    "water": {
+      "fillColor": "#b9d3c2",
+      "labelColor": "#523735"
+    },
+    "area": {
+      "fillColor": "#C28555"
+    },
+    "political": {
+      "borderStrokeColor": "#4b409e",
+      "borderOutlineColor": "#00000000"
+    },
+    "road": {
+      "fillColor": "#523735",
+      "strokeColor": "#00000000",
+      "labelColor": "#FFB300",
+      "labelOutlineColor": "#00000000",
+      "labelScale": 1.2,
+      "font": "Comic Sans MS"
+    },
+    "point": {
+      "visible": true
+    }
+  }
+}

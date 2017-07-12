@@ -1,0 +1,34 @@
+C:\Users\Chris\Desktop\CODE\Aktiv Code\TZDriver\TZDriver.Models\bin\x86\Debug\TZDriver.Models.dll
+C:\Users\Chris\Desktop\CODE\Aktiv Code\TZDriver\TZDriver.Models\bin\x86\Debug\TZDriver.Models.pdb
+C:\Users\Chris\Desktop\CODE\Aktiv Code\TZDriver\TZDriver.Models\bin\x86\Debug\TZDriver.Models.pri
+C:\Users\Chris\Desktop\CODE\Aktiv Code\TZDriver\TZDriver.Models\obj\x86\Debug\TZDriver.Models.dll
+C:\Users\Chris\Desktop\CODE\Aktiv Code\TZDriver\TZDriver.Models\obj\x86\Debug\TZDriver.Models.pdb
+C:\Users\Chris\Desktop\CODE\Aktiv Code\TZDriver\TZDriver.Models\obj\x86\Debug\priconfig.xml
+C:\Users\Chris\Desktop\CODE\Aktiv Code\TZDriver\TZDriver.Models\obj\x86\Debug\priconfig.xml.intermediate
+C:\Users\Chris\Desktop\CODE\Aktiv Code\TZDriver\TZDriver.Models\obj\x86\Debug\layout.resfiles
+C:\Users\Chris\Desktop\CODE\Aktiv Code\TZDriver\TZDriver.Models\obj\x86\Debug\layout.resfiles.intermediate
+C:\Users\Chris\Desktop\CODE\Aktiv Code\TZDriver\TZDriver.Models\obj\x86\Debug\resources.resfiles
+C:\Users\Chris\Desktop\CODE\Aktiv Code\TZDriver\TZDriver.Models\obj\x86\Debug\resources.resfiles.intermediate
+C:\Users\Chris\Desktop\CODE\Aktiv Code\TZDriver\TZDriver.Models\obj\x86\Debug\pri.resfiles
+C:\Users\Chris\Desktop\CODE\Aktiv Code\TZDriver\TZDriver.Models\obj\x86\Debug\pri.resfiles.intermediate
+C:\Users\Chris\Desktop\CODE\Aktiv Code\TZDriver\TZDriver.Models\obj\x86\Debug\qualifiers.txt
+C:\Users\Chris\Desktop\CODE\Aktiv Code\TZDriver\TZDriver.Models\obj\x86\Debug\qualifiers.txt.intermediate
+C:\Users\Chris\Desktop\CODE\Aktiv Code\TZDriver\TZDriver.Models\obj\x86\Debug\MultipleQualifiersPerDimensionFound.txt
+C:\Users\Chris\Desktop\CODE\Aktiv Code\TZDriver\TZDriver.Models\obj\x86\Debug\TZDriver.Models.csprojResolveAssemblyReference.cache
+C:\Users\Chris\Desktop\TZDriver\TZDriver.Models\bin\x86\Debug\TZDriver.Models.dll
+C:\Users\Chris\Desktop\TZDriver\TZDriver.Models\bin\x86\Debug\TZDriver.Models.pdb
+C:\Users\Chris\Desktop\TZDriver\TZDriver.Models\bin\x86\Debug\TZDriver.Models.pri
+C:\Users\Chris\Desktop\TZDriver\TZDriver.Models\obj\x86\Debug\TZDriver.Models.dll
+C:\Users\Chris\Desktop\TZDriver\TZDriver.Models\obj\x86\Debug\TZDriver.Models.pdb
+C:\Users\Chris\Desktop\TZDriver\TZDriver.Models\obj\x86\Debug\priconfig.xml
+C:\Users\Chris\Desktop\TZDriver\TZDriver.Models\obj\x86\Debug\priconfig.xml.intermediate
+C:\Users\Chris\Desktop\TZDriver\TZDriver.Models\obj\x86\Debug\layout.resfiles
+C:\Users\Chris\Desktop\TZDriver\TZDriver.Models\obj\x86\Debug\layout.resfiles.intermediate
+C:\Users\Chris\Desktop\TZDriver\TZDriver.Models\obj\x86\Debug\resources.resfiles
+C:\Users\Chris\Desktop\TZDriver\TZDriver.Models\obj\x86\Debug\resources.resfiles.intermediate
+C:\Users\Chris\Desktop\TZDriver\TZDriver.Models\obj\x86\Debug\pri.resfiles
+C:\Users\Chris\Desktop\TZDriver\TZDriver.Models\obj\x86\Debug\pri.resfiles.intermediate
+C:\Users\Chris\Desktop\TZDriver\TZDriver.Models\obj\x86\Debug\qualifiers.txt
+C:\Users\Chris\Desktop\TZDriver\TZDriver.Models\obj\x86\Debug\qualifiers.txt.intermediate
+C:\Users\Chris\Desktop\TZDriver\TZDriver.Models\obj\x86\Debug\MultipleQualifiersPerDimensionFound.txt
+C:\Users\Chris\Desktop\TZDriver\TZDriver.Models\obj\x86\Debug\TZDriver.Models.csprojResolveAssemblyReference.cache

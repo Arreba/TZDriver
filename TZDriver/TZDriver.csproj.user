@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
+    <DeviceId>30F105C9-681E-420b-A277-7C086EAD8A4E</DeviceId>
+    <UseEmulator>true</UseEmulator>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DeviceId>7C3F55B7-619D-452D-B6B0-A4A36BC552CC</DeviceId>
+    <UseEmulator>true</UseEmulator>
+  </PropertyGroup>
+  <PropertyGroup>
+    <Source>C:\Users\Chris\Desktop\TZDriver\TZDriver01.png</Source>
+    <SplashScreenSource>C:\Users\Chris\Desktop\CODE\Aktiv Code\TZDriver\TZDriver\Assets\Icons\arrebatrans.png</SplashScreenSource>
+    <SmallTileSource>C:\Users\Chris\Desktop\TZDriver\TZDriver01.png</SmallTileSource>
+    <MediumTileSource>C:\Users\Chris\Desktop\TZDriver\TZDriver01.png</MediumTileSource>
+    <WideTileSource>C:\Users\Chris\Desktop\TZDriver\TZDriver01.png</WideTileSource>
+    <LargeTileSource>C:\Users\Chris\Desktop\TZDriver\TZDriver01.png</LargeTileSource>
+    <AppIconSource>C:\Users\Chris\Desktop\TZDriver\TZDriver01.png</AppIconSource>
+    <BadgeLogoSource>C:\Users\Chris\Desktop\TZDriver\TZDriver01.png</BadgeLogoSource>
+    <PackageLogoSource>C:\Users\Chris\Desktop\TZDriver\TZDriver01.png</PackageLogoSource>
+  </PropertyGroup>
+</Project>

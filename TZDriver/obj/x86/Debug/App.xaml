@@ -1,0 +1,30 @@
+﻿<common:BootStrapper x:Class="TZDriver.App"
+                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                     xmlns:common="using:Template10.Common"
+                     xmlns:viewmodel="using:TZDriver.ViewModels"
+                     xmlns:converters="using:TZDriver.Models.Tools.Converters">
+
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles\Custom.xaml" />
+                <ResourceDictionary Source="Controls\ControlStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <viewmodel:ViewModelLocator x:Key="Locator" />
+            <!--  Converters  -->
+            <converters:DateTimeToLongDateConverter x:Key="dateTimeToLongDateConverter" />
+            <converters:NameConverter x:Key="fullNameToFirstConverter" />
+            <converters:TimeInListConverter x:Key="timeInListConverter" />
+            <converters:TimeInListToAMPMConverter x:Key="timeInListToAMPMConverter" />
+            <converters:NullToVisibilityConverter x:Key="nullToVisibilityConverter" />
+            <converters:StringFormatConverter x:Key="stringFormaterConverter" />
+            <converters:TimespanToDurationConverter x:Key="timespanToDurationConverter" />
+            <converters:TripStateColorConverter x:Key="tripStateColorConverter" />
+            <converters:TripTypeIconConverter x:Key="tripTypeIconConverter" />
+
+        </ResourceDictionary>
+    </Application.Resources>
+
+
+</common:BootStrapper>

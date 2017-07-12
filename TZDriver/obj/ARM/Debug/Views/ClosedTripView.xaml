@@ -1,0 +1,236 @@
+﻿<Page x:Class="TZDriver.Views.ClosedTripView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:TZDriver.Views"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
+      xmlns:Interactivity="using:Microsoft.Xaml.Interactivity"
+      xmlns:controls="using:Template10.Controls"
+      xmlns:vm="using:TZDriver.ViewModels"
+      xmlns:data="using:TZDriver.Models.DataModels"
+      xmlns:mapctrl="using:Windows.UI.Xaml.Controls.Maps"
+      Background="{StaticResource AtransPageBackgroundBrush}"
+      DataContext="{Binding ClosedPage, Source={StaticResource Locator}}"
+      mc:Ignorable="d">
+
+    <Page.Resources>
+        <DataTemplate x:Key="CompletedJobsTemplate">
+            <Grid>
+                <Canvas Margin="5,0" />
+                <Grid Margin="5,0"
+                      Padding="5"
+                      MaxHeight="90"
+                      Background="{StaticResource AtransGreenDarkBrush}"
+                      BorderBrush="{StaticResource AtransBlueDarkBrush}"
+                      BorderThickness="2"
+                      CornerRadius="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Column="0"
+                               Grid.Row="0"
+                               FontSize="26"
+                               FontWeight="Bold"
+                               Margin="5 0 0 0"
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Center"
+                               FontFamily="{StaticResource GeosansLight}"
+                               Foreground="{StaticResource AtransBrownDarkBrush1}"
+                               Text="{Binding CustomerName}" />
+                    <Grid Grid.Column="0"
+                          Margin="5 0 0 0"
+                          Grid.Row="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1.2*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Row="0"
+                                    Grid.Column="0"
+                                    Grid.RowSpan="2"
+                                    Orientation="Vertical">
+                            <TextBlock Text="FARE"
+                                       FontSize="12"
+                                       HorizontalAlignment="Left"
+                                       VerticalAlignment="Center"
+                                       FontFamily="{StaticResource Ailerons}"
+                                       Foreground="{StaticResource AtransBrownLightBrush1}" />
+                            <TextBlock FontSize="24"
+                                       HorizontalAlignment="Left"
+                                       VerticalAlignment="Center"
+                                       FontFamily="{StaticResource NotJustGroovy}"
+                                       Foreground="{StaticResource AtransRedDarkBrush}"
+                                       Text="{Binding TripEndFare}" />
+                        </StackPanel>
+                        <StackPanel Grid.Row="0"
+                                    Grid.Column="1"
+                                    Orientation="Horizontal"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center">
+                            <FontIcon Margin="0 0 10 0"
+                                      VerticalAlignment="Center"
+                                      FontFamily="Segoe UI Symbol"
+                                      FontSize="12"
+                                      Foreground="{StaticResource AtransBrownLightBrush1}"
+                                      Glyph="&#x231A;" />
+                            <!--<TextBlock Text="DURATION"
+                                       Margin="0 0 10 0"
+                                       FontSize="10"
+                                       FontFamily="{StaticResource Ailerons}"
+                                       Foreground="{StaticResource AtransBrownLightBrush1}" />-->
+                            <TextBlock FontSize="14"
+                                       FontFamily="{StaticResource NotJustGroovy}"
+                                       Foreground="{StaticResource AtransRedDarkBrush}"
+                                       Text="{Binding TripDuration}" />
+                        </StackPanel>
+                        <StackPanel Grid.Row="1"
+                                    Grid.Column="1"
+                                    Orientation="Horizontal"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center">
+                            <FontIcon Margin="0 0 10 0"
+                                      VerticalAlignment="Center"
+                                      FontFamily="Segoe UI Symbol"
+                                      FontSize="12"
+                                      Foreground="{StaticResource AtransBrownLightBrush1}"
+                                      Glyph="&#x26dc;" />
+                            <!--<TextBlock Text="DISTANCE"
+                                       Margin="0 0 10 0"
+                                       FontSize="10"
+                                       FontFamily="{StaticResource Ailerons}"
+                                       Foreground="{StaticResource AtransBrownLightBrush1}" />-->
+                            <TextBlock FontSize="14"
+                                       FontFamily="{StaticResource NotJustGroovy}"
+                                       Foreground="{StaticResource AtransRedDarkBrush}"
+                                       Text="{Binding TripDistance, Converter={StaticResource ResourceKey=stringFormaterConverter}, ConverterParameter='\{0:F1\}&#x339e;'}" />
+                        </StackPanel>
+                    </Grid>
+                    <Grid Grid.Column="2"
+                          Grid.Row="0"
+                          Grid.RowSpan="2"
+                          Padding="5"
+                          MinWidth="15"
+                          HorizontalAlignment="Left"
+                          Background="{StaticResource AtransBrownDarkBrush1}" />
+                    <Grid Grid.Column="2"
+                          Grid.Row="0"
+                          Grid.RowSpan="2"
+                          Padding="5"
+                          Background="{StaticResource AtransBrownDarkBrush1}"
+                          CornerRadius="6">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <StackPanel Grid.Row="0"
+                                    Orientation="Horizontal">
+                            <TextBlock FontSize="24"
+                                       FontFamily="{StaticResource NotJustGroovy}"
+                                       Foreground="{StaticResource AtransBrownLightBrush1}"
+                                       Text="{Binding TripStartTime, Converter={StaticResource timeInListConverter}}" />
+                            <TextBlock Margin="2,0,0,0"
+                                       FontSize="14"
+                                       VerticalAlignment="Center"
+                                       FontFamily="{StaticResource Ailerons}"
+                                       Foreground="{StaticResource AtransRedDarkBrush}"
+                                       Text="{Binding TripStartTime, Converter={StaticResource timeInListToAMPMConverter}}" />
+                        </StackPanel>
+                        <StackPanel Grid.Row="1"
+                                    Margin="0,5,0,0"
+                                    Orientation="Horizontal">
+                            <TextBlock FontSize="24"
+                                       FontFamily="{StaticResource NotJustGroovy}"
+                                       Foreground="{StaticResource AtransPageBackgroundBrush}"
+                                       Text="{Binding TripEndTime, Converter={StaticResource timeInListConverter}}" />
+                            <TextBlock Margin="2,0,0,0"
+                                       FontSize="14"
+                                       VerticalAlignment="Bottom"
+                                       FontFamily="{StaticResource Ailerons}"
+                                       Foreground="{StaticResource AtransRedDarkBrush}"
+                                       Text="{Binding TripEndTime, Converter={StaticResource timeInListToAMPMConverter}}" />
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="CompletedJobsHeaderTemplate">
+            <Grid Margin="0,0,0,15">
+                <TextBlock Margin="10,20,0,0"
+                           FontFamily="{StaticResource NotJustGroovy}"
+                           FontWeight="SemiBold"
+                           FontSize="18"
+                           Foreground="#BF28180E"
+                           Style="{StaticResource SubtitleTextBlockStyle}"
+                           Text="COMPLETED TRIPS" />
+            </Grid>
+        </DataTemplate>
+    </Page.Resources>
+
+    <RelativePanel>
+        <controls:PageHeader x:ConnectionId='1' x:Name="pageHeader"
+                             Content="TZTAXI"
+                             RelativePanel.AlignLeftWithPanel="True"
+                             RelativePanel.AlignRightWithPanel="True"
+                             RelativePanel.AlignTopWithPanel="True"
+                             EllipsisVisibility="Collapsed"
+                             Style="{StaticResource PageHeaderStyle}" />
+        <Rectangle x:ConnectionId='2' x:Name="lineBorder"
+                   Height="3"
+                   VerticalAlignment="Top"
+                   Fill="{StaticResource AtransBrownLightBrush4}"
+                   RelativePanel.AlignLeftWithPanel="True"
+                   RelativePanel.AlignRightWithPanel="True"
+                   RelativePanel.Below="pageHeader" />
+
+        <ListView x:ConnectionId='3' x:Name="CompletedJobsListview"
+                  Margin="5,0"
+                  RelativePanel.AlignBottomWithPanel="True"
+                  RelativePanel.AlignLeftWithPanel="True"
+                  RelativePanel.AlignRightWithPanel="True"
+                  RelativePanel.Below="lineBorder"
+                  IsItemClickEnabled="True"
+                  SelectionMode="None"
+                  ItemTemplate="{StaticResource CompletedJobsTemplate}"
+                  HeaderTemplate="{StaticResource CompletedJobsHeaderTemplate}"
+                  ItemsSource="{Binding CompletedTripCollection, Mode=TwoWay}"
+                  Style="{StaticResource ListViewStyle1}">
+            <Interactivity:Interaction.Behaviors>
+                <Core:EventTriggerBehavior EventName="ItemClick">
+                    <Core:InvokeCommandAction Command="{Binding SelectedCompletedTripCommand, Mode=OneWay}" />
+                </Core:EventTriggerBehavior>
+                <Core:EventTriggerBehavior EventName="ContainerContentChanging">
+                    <Core:InvokeCommandAction Command="{Binding CompletedJobsListviewContainerContentChanging, Mode=OneWay}" />
+                </Core:EventTriggerBehavior>
+            </Interactivity:Interaction.Behaviors>
+            <ListView.Header>
+                <Style TargetType="ListViewHeaderItem">
+                    <Setter Property="HorizontalContentAlignment"
+                            Value="Stretch" />
+                </Style>
+            </ListView.Header>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment"
+                            Value="Stretch" />
+                    <Setter Property="Margin"
+                            Value="0,0,0,8" />
+                    <Setter Property="Padding"
+                            Value="0" />
+                </Style>
+            </ListView.ItemContainerStyle>
+        </ListView>
+
+    </RelativePanel>
+
+</Page>
+

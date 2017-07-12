@@ -1,0 +1,198 @@
+﻿<UserControl x:Class="TZDriver.Controls.TripMapControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="using:TZDriver.Controls"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:mapctrl="using:Windows.UI.Xaml.Controls.Maps"
+             mc:Ignorable="d"
+             d:DesignHeight="300"
+             d:DesignWidth="400">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <RelativePanel Grid.Row="0" Background="{StaticResource AtransBrownDarkBrush2}">
+            <TextBlock x:ConnectionId='4' x:Name="titleBlock"
+                       Text="RIDE MAP"
+                       Margin="15 0 0 0"
+                       FontSize="20"
+                       FontWeight="SemiBold"
+                       RelativePanel.AlignLeftWithPanel="True"
+                       RelativePanel.AlignVerticalCenterWithPanel="True"
+                       FontFamily="{StaticResource NotJustGroovy}"
+                       Foreground="{StaticResource AtransBrownLightBrush1}" />
+            <Button x:ConnectionId='5' x:Name="closeButton"
+                    Grid.Column="1"
+                    Margin="10"
+                    RelativePanel.AlignRightWithPanel="True"
+                    RelativePanel.AlignTopWithPanel="True"
+                    RelativePanel.AlignVerticalCenterWithPanel="True"
+                    Style="{StaticResource CompletedButtonStyle}"
+                                             >
+                <Button.Content>
+                    <StackPanel Orientation="Vertical">
+                        <FontIcon HorizontalAlignment="Center"
+                                  VerticalAlignment="Center"
+                                  FontFamily="Segoe MDL2 Assets"
+                                  FontSize="20"
+                                  Foreground="{StaticResource AtransBrownLightBrush1}"
+                                  Glyph="&#xE10A;" />
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+        </RelativePanel>
+        <RelativePanel Grid.Row="1">
+            <mapctrl:MapControl x:ConnectionId='1' x:Name="CompletedTripMap"
+                                ColorScheme="Dark"
+                                IsDoubleTapEnabled="False"
+                                IsHitTestVisible="False"
+                                IsHoldingEnabled="False"
+                                IsRightTapEnabled="False"
+                                IsTapEnabled="False"
+                                RelativePanel.AlignTopWithPanel="True"
+                                RelativePanel.AlignBottomWithPanel="True"
+                                RelativePanel.AlignLeftWithPanel="True"
+                                RelativePanel.AlignRightWithPanel="True" />
+            <Grid x:ConnectionId='2' x:Name="TopBG"
+                  MinHeight="60"
+                  Margin="0,-4,0,0"
+                  RelativePanel.AlignTopWithPanel="True"
+                  RelativePanel.AlignLeftWithPanel="True"
+                  RelativePanel.AlignRightWithPanel="True">
+                <Grid.Background>
+                    <LinearGradientBrush StartPoint="0.5,0"
+                                         EndPoint="0.5,1">
+                        <GradientStop Offset="0.1"
+                                      Color="{StaticResource AtransBrownDarkColor2}" />
+                        <GradientStop Offset="0.3"
+                                      Color="#CC28180E" />
+                        <GradientStop Offset="0.5"
+                                      Color="#7F28180E" />
+                        <GradientStop Offset="0.7"
+                                      Color="#4C28180E" />
+                        <GradientStop Offset="0.9"
+                                      Color="#1928180E" />
+                        <GradientStop Offset="1"
+                                      Color="#0228180E" />
+                    </LinearGradientBrush>
+                </Grid.Background>
+            </Grid>
+
+            <Grid x:ConnectionId='3' x:Name="BottomBG"
+                  MinHeight="60"
+                  RelativePanel.AlignBottomWithPanel="True"
+                  RelativePanel.AlignLeftWithPanel="True"
+                  RelativePanel.AlignRightWithPanel="True">
+                <Grid.Background>
+                    <LinearGradientBrush StartPoint="0.5,0"
+                                         EndPoint="0.5,1">
+                        <GradientStop Offset="0.1"
+                                      Color="#0228180E" />
+                        <GradientStop Offset="0.3"
+                                      Color="#1928180E" />
+                        <GradientStop Offset="0.5"
+                                      Color="#4C28180E" />
+                        <GradientStop Offset="0.6"
+                                      Color="#7F28180E" />
+                        <GradientStop Offset="0.7"
+                                      Color="#CC28180E" />
+                        <GradientStop Offset="1"
+                                      Color="{StaticResource AtransBrownDarkColor2}" />
+                    </LinearGradientBrush>
+                </Grid.Background>
+            </Grid>
+            <!--<Grid x:Name="rideDistance"
+                  Height="60"
+                  Width="60"
+                  CornerRadius="30"
+                  BorderThickness="1.5"
+                  RelativePanel.Below="TopBG"
+                  RelativePanel.AlignLeftWithPanel="True"
+                  BorderBrush="{StaticResource AtransBlueDarkBrush}">
+                <Grid.Background>
+                    <SolidColorBrush Opacity="0.5"
+                                     Color="{StaticResource AtransBlueLightColor}" />
+                </Grid.Background>
+
+            </Grid>
+            <Grid x:Name="rideStart"
+                  Height="60"
+                  Width="60"
+                  CornerRadius="30"
+                  BorderThickness="1.5"
+                  RelativePanel.Below="TopBG"
+                  RelativePanel.AlignHorizontalCenterWithPanel="True"
+                  BorderBrush="{StaticResource AtransBlueDarkBrush}">
+                <Grid.Background>
+                    <SolidColorBrush Opacity="0.5"
+                                     Color="{StaticResource AtransBlueLightColor}" />
+                </Grid.Background>
+
+            </Grid>
+            <Grid x:Name="rideStop"
+                  Height="60"
+                  Width="60"
+                  CornerRadius="30"
+                  BorderThickness="1.5"
+                  RelativePanel.Below="TopBG"
+                  RelativePanel.AlignRightWithPanel="True"
+                  BorderBrush="{StaticResource AtransBlueDarkBrush}">
+                <Grid.Background>
+                    <SolidColorBrush Opacity="0.5"
+                                     Color="{StaticResource AtransBlueLightColor}" />
+                </Grid.Background>
+
+            </Grid>-->
+
+            <!--<Grid x:Name="tripDistance"
+                  Height="60"
+                  Width="60"
+                  CornerRadius="30"
+                  BorderThickness="1.5"
+                  Margin="0 15 0 0"
+                  RelativePanel.Below="rideDistance"
+                  RelativePanel.AlignLeftWithPanel="True"
+                  BorderBrush="{StaticResource AtransPurpleDarkBrush}">
+                <Grid.Background>
+                    <SolidColorBrush Opacity="0.5"
+                                     Color="{StaticResource AtransPurpleLightColor}" />
+                </Grid.Background>
+
+            </Grid>
+            <Grid x:Name="tripStart"
+                  Height="60"
+                  Width="60"
+                  CornerRadius="30"
+                  BorderThickness="1.5"
+                  Margin="0 15 0 0"
+                  RelativePanel.Below="rideStart"
+                  RelativePanel.AlignHorizontalCenterWithPanel="True"
+                  BorderBrush="{StaticResource AtransPurpleDarkBrush}">
+                <Grid.Background>
+                    <SolidColorBrush Opacity="0.5"
+                                     Color="{StaticResource AtransPurpleLightColor}" />
+                </Grid.Background>
+
+            </Grid>
+            <Grid x:Name="tripStop"
+                  Height="60"
+                  Width="60"
+                  CornerRadius="30"
+                  BorderThickness="1.5"
+                  Margin="0 15 0 0"
+                  RelativePanel.Below="rideDistance"
+                  RelativePanel.AlignRightWithPanel="True"
+                  BorderBrush="{StaticResource AtransPurpleDarkBrush}">
+                <Grid.Background>
+                    <SolidColorBrush Opacity="0.5"
+                                     Color="{StaticResource AtransPurpleLightColor}" />
+                </Grid.Background>
+
+            </Grid>-->
+        </RelativePanel>
+    </Grid>
+</UserControl>
+

@@ -1,0 +1,167 @@
+﻿<ContentDialog x:ConnectionId='1' x:Class="TZDriver.Controls.EndDialog"
+               xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+               xmlns:local="using:TZDriver.Controls"
+               xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+               xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+               Style="{StaticResource contentDialogStyle}"
+               mc:Ignorable="d">
+
+    <ContentDialog.Title>
+        <Grid MinWidth="300">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0"
+                       Text="FINISH TRIP"
+                       FontFamily="{StaticResource NotJustGroovy}"
+                       FontWeight="SemiBold"
+                       Foreground="{StaticResource AtransBrownLightBrush1}"
+                       FontSize="20" />
+            <Viewbox Grid.Column="1"
+                     Width="30"
+                     Height="30"
+                     HorizontalAlignment="Right"
+                     VerticalAlignment="Center">
+                <local:CountdownControl x:ConnectionId='2' x:Name="myCountdownControl" />
+            </Viewbox>
+        </Grid>
+    </ContentDialog.Title>
+
+    <Grid x:ConnectionId='3' x:Name="relativeJobGrid"
+          Margin="0,50,0,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Text="Trip Stopping . . ."
+                   Grid.Row="0"
+                   Grid.ColumnSpan="2"
+                   Margin="0,10,0,0"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   FontSize="14"
+                   FontFamily="{StaticResource NotJustGroovy}"
+                   Foreground="{StaticResource AtransYellowDarkBrush}" />
+        <TextBlock Text="Do you want to STOP the Trip?"
+                   Grid.Row="1"
+                   Grid.ColumnSpan="2"
+                   Margin="0,0,0,10"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   FontSize="18"
+                   FontFamily="{StaticResource NotJustGroovy}"
+                   Foreground="{StaticResource AtransBrownDarkBrush3}" />
+
+        <ComboBox x:ConnectionId='4' x:Name="JobStatus"
+                  Grid.Row="2"
+                  Grid.Column="0"
+                  Margin="0,15,5,15"
+                  MinHeight="50"
+                  Width="145"
+                  BorderThickness="0,0,0,1.2"
+                  Background="Transparent"
+                  HorizontalAlignment="Stretch"
+                  Foreground="{StaticResource AtransBrownDarkBrush3}"
+                  BorderBrush="{StaticResource AtransBrownDarkBrush3}"
+                  Style="{StaticResource ComboBoxStyle1}"
+                                                      
+                                                                        
+                  SelectedIndex="{Binding DefaultIndex}">
+            <ComboBox.HeaderTemplate>
+                <DataTemplate>
+                    <TextBlock Text="Payment Status"
+                               Foreground="{StaticResource AtransBrownDarkBrush3}"
+                               FontFamily="{StaticResource NotJustGroovy}"
+                               FontSize="12"
+                               Margin="0 0 0 -2"
+                               FontWeight="Bold" />
+                </DataTemplate>
+            </ComboBox.HeaderTemplate>
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock FontSize="14"
+                               Text="{Binding}"
+                               FontFamily="{StaticResource NotJustGroovy}"
+                               Foreground="{StaticResource AtransBrownDarkBrush3}" />
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+
+        <ComboBox x:ConnectionId='5' x:Name="PaymentOption"
+                  Grid.Row="2"
+                  Grid.Column="1"
+                  Margin="5,15,0,15"
+                  MinHeight="50"
+                  Width="145"
+                  BorderThickness="0,0,0,1.2"
+                  Background="Transparent"
+                  HorizontalAlignment="Stretch"
+                  Foreground="{StaticResource AtransBrownDarkBrush3}"
+                  BorderBrush="{StaticResource AtransBrownDarkBrush3}"
+                  Style="{StaticResource ComboBoxStyle1}"
+                                                    
+                                                                      
+                  SelectedIndex="{Binding DefaultIndex}">
+            <ComboBox.HeaderTemplate>
+                <DataTemplate>
+                    <TextBlock Text="Payment Option"
+                               Foreground="{StaticResource AtransBrownDarkBrush3}"
+                               FontFamily="{StaticResource NotJustGroovy}"
+                               FontSize="12"
+                               Margin="0 0 0 -2"
+                               FontWeight="Bold" />
+                </DataTemplate>
+            </ComboBox.HeaderTemplate>
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock FontSize="14"
+                               Text="{Binding}"
+                               Foreground="{StaticResource AtransBrownDarkBrush3}"
+                               FontFamily="{StaticResource NotJustGroovy}" />
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+
+        <Button x:ConnectionId='6' x:Name="EndButton"
+                Grid.Row="3"
+                Grid.Column="1"
+                Margin="0,15,0,10"
+                MinWidth="145"
+                MinHeight="40"
+                VerticalAlignment="Bottom"
+                                       
+                Background="{StaticResource AtransBlueDarkBrush}">
+            <Button.Content>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="FINISH"
+                               Margin="0,0,5,0"
+                               VerticalAlignment="Center"
+                               FontSize="16"
+                               FontWeight="SemiBold"
+                               Foreground="{StaticResource AtransBrownLightBrush1}"
+                               Style="{StaticResource TitleTextBlockStyle}"
+                               FontFamily="{StaticResource NotJustGroovy}" />
+                    <FontIcon HorizontalAlignment="Center"
+                              VerticalAlignment="Center"
+                              FontFamily="Segoe MDL2 Assets"
+                              FontSize="24"
+                              Glyph="&#xE8B6;"
+                              Foreground="{StaticResource AtransBrownLightBrush1}">
+                    </FontIcon>
+                </StackPanel>
+            </Button.Content>
+        </Button>
+
+    </Grid>
+
+</ContentDialog>
+
